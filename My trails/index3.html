@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    
+   <div class="container">
+
+   </div>
+
+    <script>
+           let h = []
+       function fetchData()  {
+           fetch('../data/state.json')
+           .then(res => res.json())
+           .then(data => {
+            h = data;
+            console.log(h)
+           })
+           .catch(err => {
+             console.log(err)
+           })
+       }
+       fetchData();
+    
+       function renderData() {
+           let states = h;
+           let html = '';
+
+           h.forEach(state => {
+               let htmlSegment = `<div class = "state">
+                                     <h3>${state.abbr}</h3>
+                                     <h3>${state.capital}</h3>
+                                     <h3>${state.lat} ${state.long}</h3>
+                                     <h3>${state.name}</h3> 
+                                  </div>`;
+                html += htmlSegment;
+           });
+
+          
+       }
+    </script>
+</body>
+</html>
